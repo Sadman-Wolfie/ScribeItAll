@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "ScribeItAll",
+  "version": "1.0",
+  "description": "Extracts readable content and saves it as a Markdown file for studying.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "downloads"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "icons/favicon-1.png",
+    "32": "icons/favicon-2.png",
+    "48": "icons/favicon-3.png",
+    "128": "icons/favicon-4.png"
+  },
+  "action": {
+    "default_title": "Extract to Markdown"
+  }
+}
