@@ -6,7 +6,8 @@
   "permissions": [
     "activeTab",
     "scripting",
-    "downloads"
+    "downloads",
+    "storage"
   ],
   "background": {
     "service_worker": "background.js"
@@ -19,5 +20,6 @@
   },
   "action": {
     "default_title": "Extract to Markdown"
-  }
+  },
+  "options_page": "options.html"
 }

@@ -1,26 +1,30 @@
-// Listen for clicks on the extension icon
 chrome.action.onClicked.addListener((tab) => {
-  // Inject the libraries and our extraction script into the current tab
+  // Inject the libraries and the content script into the active tab
   chrome.scripting.executeScript({
     target: { tabId: tab.id },
     files: [
-      "libs/Readability.js", 
-      "libs/turndown.js", 
+      "libs/readability.js",
+      "libs/turndown.js",
+      "libs/turndown-plugin-gfm.js", // The new table plugin goes exactly here
       "content.js"
     ]
   });
 });
 
-// Listen for the markdown payload from the content script and download it
+// Listen for the complete ritual message to trigger the download
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === "download") {
-    // Convert markdown string to a data URI
-    const dataUrl = "data:text/markdown;charset=utf-8," + encodeURIComponent(request.markdown);
+    const blob = new Blob([request.markdown], { type: "text/markdown" });
+    const reader = new FileReader();
     
-    chrome.downloads.download({
-      url: dataUrl,
-      filename: request.filename,
-      saveAs: true // Prompts the user where to save the file
-    });
+    reader.onload = function() {
+      chrome.downloads.download({
+        url: reader.result,
+        filename: request.filename,
+        saveAs: false 
+      });
+    };
+    
+    reader.readAsDataURL(blob);
   }
 });
