@@ -9,6 +9,9 @@ async function injectAndRun(tabId) {
         "libs/readability.js",
         "libs/turndown.js",
         "libs/turndown-plugin-gfm.js",
+        "themes/blood.js",
+        "themes/verdant.js",
+        "themes/cyber.js",
         "content.js"
       ]
     });
