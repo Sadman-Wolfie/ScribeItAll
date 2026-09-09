@@ -303,18 +303,8 @@ if (typeof window.hasRun === 'undefined') {
       return ticks;
     }
 
-    // --- VERDANT VINES GENERATOR ---
     // --- BOTANICAL VERDANT VINES GENERATOR ---
     function generateVerdantVines() {
-      const spawnPoints = [
-        {x: 0, y: -150}, {x: 10, y: -180}, {x: 25, y: -230}, {x: 0, y: -280},
-        {x: -15, y: -310}, {x: -25, y: -340}, {x: -35, y: -370}, {x: -50, y: -400},
-        {x: -30, y: -430}, {x: -15, y: -460}, {x: 5, y: -485}, {x: 20, y: -510}, 
-        {x: 30, y: -530}, {x: 40, y: -550},
-        {x: 20, y: -190}, {x: 40, y: -200}, {x: 60, y: -225}, {x: 80, y: -250},
-        {x: 90, y: -290}, {x: 105, y: -315}, {x: 125, y: -335}, {x: 145, y: -360},
-        {x: 160, y: -380}, {x: 180, y: -395}, {x: 200, y: -410}, {x: 225, y: -425},
-        {x: 250, y: -445}, {x: 270, y: -460}, {x: 290, y: -470}
       const foliageNodes = [
         // Main stem foliage (alternating left/right)
         { x: 10, y: -145, rot: 35, type: '#ivy-leaf', scale: 1.25, delay: 0.45 },
@@ -371,7 +361,6 @@ if (typeof window.hasRun === 'undefined') {
       let branchesHTML = '';
 
       for (let i = 0; i < 8; i++) {
-        let rotation = i * 45;
         const rotation = i * 45;
         const isOdd = i % 2 === 1;
 
@@ -411,21 +400,6 @@ if (typeof window.hasRun === 'undefined') {
         });
 
         let flowersHTML = '';
-        let numFlowers = Math.floor(Math.random() * 9) + 12;
-        let shuffledPoints = [...spawnPoints].sort(() => 0.5 - Math.random()).slice(0, numFlowers);
-        
-        shuffledPoints.forEach(pt => {
-          let randType = Math.random();
-          let type;
-          if (randType > 0.75) type = '#dense-cluster';
-          else if (randType > 0.50) type = '#flower-cluster';
-          else if (randType > 0.30) type = '#orchid-cluster';
-          else if (randType > 0.15) type = '#orchid-flower';
-          else type = '#single-flower';
-          
-          let scale = (Math.random() * 1.4 + 0.8).toFixed(2); 
-          let delay = (Math.random() * 1.5 + 1.0).toFixed(2); 
-          flowersHTML += `<g style="transform: translate(${pt.x}px, ${pt.y}px);"><g class="flower" style="animation-delay: ${delay}s;"><use href="${type}" transform="scale(${scale})"/></g></g>`;
         flowerNodes.forEach(fl => {
           const s = (fl.scale * (isOdd ? 1.05 : 0.95)).toFixed(2);
           const d = fl.delay.toFixed(2);
@@ -439,13 +413,6 @@ if (typeof window.hasRun === 'undefined') {
 
         branchesHTML += `
           <g transform="rotate(${rotation})">
-             <path d="M 0 -120 Q 50 -200 0 -280" fill="none" stroke="#154c19" stroke-width="8" class="vine-base" stroke-linecap="round"/>
-             <path d="M 0 -120 Q 50 -200 0 -280 T -50 -400" fill="none" stroke="#2e8b57" stroke-width="4" class="vine-mid" stroke-linecap="round"/>
-             <path d="M 0 -120 Q 50 -200 0 -280 T -50 -400 T 40 -550" fill="none" stroke="#66bb6a" stroke-width="1.5" class="vine-tip" stroke-linecap="round"/>
-             <path d="M 17 -185 Q 80 -220 90 -290" fill="none" stroke="#154c19" stroke-width="5.5" class="vine-base" stroke-linecap="round"/>
-             <path d="M 17 -185 Q 80 -220 90 -290 T 160 -380" fill="none" stroke="#2e8b57" stroke-width="3" class="vine-mid" stroke-linecap="round"/>
-             <path d="M 17 -185 Q 80 -220 90 -290 T 160 -380 Q 220 -440 290 -470" fill="none" stroke="#81c784" stroke-width="1" class="vine-tip" stroke-linecap="round"/>
-             ${flowersHTML}
             <!-- Woody Main Stem -->
             <path d="M 0 -120 C 25 -165 38 -215 12 -270 C -18 -325 -30 -385 -6 -445 C 18 -500 12 -540 28 -575" 
                   fill="none" stroke="url(#vine-grad-wood)" stroke-width="7" stroke-linecap="round" class="vine-base" />
