@@ -1,32 +1,156 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8">
   <title>ScribeItAll - Grimoire Settings</title>
   <style>
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #1e1e1e; color: #f0f0f0; padding: 30px; }
-    .container { max-width: 500px; margin: 0 auto; background: #2d2d2d; padding: 20px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-    h1 { margin-top: 0; color: #d4d4d4; font-size: 24px; border-bottom: 1px solid #444; padding-bottom: 10px; }
-    label { display: block; margin: 15px 0 5px; font-weight: bold; }
-    select { width: 100%; padding: 10px; background: #1e1e1e; color: #fff; border: 1px solid #555; border-radius: 4px; font-size: 16px; margin-bottom: 20px; }
-    button { background: #5a0000; color: white; border: none; padding: 10px 20px; font-size: 16px; border-radius: 4px; cursor: pointer; transition: background 0.2s; }
-    button:hover { background: #8b0000; }
-    #status { margin-left: 15px; color: #4caf50; font-size: 14px; opacity: 0; transition: opacity 0.3s; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #121212;
+      color: #e0e0e0;
+      padding: 40px 20px;
+      margin: 0;
+    }
+    .container {
+      max-width: 520px;
+      margin: 0 auto;
+      background: #1e1e1e;
+      padding: 28px;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+      border: 1px solid #333;
+    }
+    h1 {
+      margin-top: 0;
+      color: #ff3333;
+      font-size: 24px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-bottom: 1px solid #333;
+      padding-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .setting-group {
+      margin-bottom: 22px;
+    }
+    label.group-title {
+      display: block;
+      margin: 0 0 8px;
+      font-weight: 600;
+      font-size: 14px;
+      color: #ccc;
+      letter-spacing: 0.5px;
+    }
+    select {
+      width: 100%;
+      padding: 11px;
+      background: #141414;
+      color: #fff;
+      border: 1px solid #444;
+      border-radius: 6px;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    select:focus {
+      border-color: #8b0000;
+    }
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #141414;
+      padding: 12px 14px;
+      border-radius: 6px;
+      border: 1px solid #333;
+      cursor: pointer;
+    }
+    .checkbox-row input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: #ff3333;
+      cursor: pointer;
+    }
+    .checkbox-label {
+      font-size: 14px;
+      color: #ddd;
+      cursor: pointer;
+      user-select: none;
+    }
+    .hint {
+      font-size: 12px;
+      color: #777;
+      margin-top: 5px;
+    }
+    .btn-row {
+      display: flex;
+      align-items: center;
+      margin-top: 26px;
+    }
+    button {
+      background: #7a0000;
+      color: white;
+      border: 1px solid #990000;
+      padding: 11px 24px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    button:hover {
+      background: #a80000;
+      box-shadow: 0 0 12px rgba(255, 0, 0, 0.4);
+    }
+    #status {
+      margin-left: 16px;
+      color: #4caf50;
+      font-size: 14px;
+      font-weight: 500;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Transmutation Settings</h1>
+    <h1><span>🩸</span> Transmutation Settings</h1>
     
-    <label for="theme">Select Ritual Circle Theme:</label>
-    <select id="theme">
-      <option value="blood">The Blood Pact (Scarlet Core)</option>
-      <option value="verdant">The Overgrowth (Nature/Leaf Elements)</option>
-      <option value="cyber">The Neon Matrix (Cyber Grid)</option>
-    </select>
+    <div class="setting-group">
+      <label class="group-title" for="theme">Ritual Circle Theme:</label>
+      <select id="theme">
+        <option value="blood">The Blood Pact (Scarlet Pentacle &amp; Embers)</option>
+        <option value="verdant">The Overgrowth (Bioluminescent Flora &amp; Vines)</option>
+        <option value="cyber">The Neon Matrix (Hexagram Reticles &amp; Data Streams)</option>
+      </select>
+    </div>
 
-    <div>
+    <div class="setting-group">
+      <label class="group-title" for="speed">Ritual Pacing / Speed:</label>
+      <select id="speed">
+        <option value="grand">The Grand Ritual (~3.8s - Full Cinematic Experience)</option>
+        <option value="swift">Swift Binding (~1.5s - Accelerated Ritual)</option>
+        <option value="instant">Instant Transmutation (0s - Silent Extraction)</option>
+      </select>
+      <div class="hint">Adjusts how long the transmutation circle animates before sealing.</div>
+    </div>
+
+    <div class="setting-group">
+      <label class="group-title">Sensory Audio FX:</label>
+      <label class="checkbox-row" for="sound">
+        <input type="checkbox" id="sound" checked>
+        <span class="checkbox-label">Enable Procedural Web Audio Soundscapes</span>
+      </label>
+      <div class="hint">Synthesizes occult drones, nature chimes, and cyber telemetry in real-time. Zero external files.</div>
+    </div>
+
+    <div class="btn-row">
       <button id="save">Save Binding</button>
-      <span id="status">Settings saved!</span>
+      <span id="status">Settings sealed into memory!</span>
     </div>
   </div>
   <script src="options.js"></script>

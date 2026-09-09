@@ -21,5 +21,14 @@
   "action": {
     "default_title": "Extract to Markdown"
   },
+  "commands": {
+    "transmute_page": {
+      "suggested_key": {
+        "default": "Alt+Shift+S",
+        "mac": "Alt+Shift+S"
+      },
+      "description": "Transmute active page to Grimoire Markdown"
+    }
+  },
   "options_page": "options.html"
 }
